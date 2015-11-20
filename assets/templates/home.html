@@ -1,0 +1,32 @@
+<div class="header">
+    <div class="container">
+        <div class="header__menu">
+          <a class="button button--primary" href="/about">About</a>
+          <a class="button button--primary" href="/offer">Offer</a>
+          <a class="button button--primary" href="/model">3d model</a>
+        </div>
+        <a href="#0" class="button-link button-link--primary section__link" du-smooth-scroll>Follow history</a>
+    </div>
+</div>
+<div ng-repeat=" car in cars" class="row section" id="{{$index}}">
+    <div class="col-sm-4 col-sm-offset-4">
+        <h2>{{car.model}}</h2>
+        <p>{{car.year}}</p>
+        <form ng-submit="addComment(car, formData)" >
+            <div class="form-group">
+                <input type="text" class="form-control text-center" placeholder="Add name" ng-model="formData.name">
+                <br>
+                <input type="text" class="form-control text-center" placeholder="Add comment" ng-model="formData.comment">
+                <br>
+                <button type="submit" class="button button--primary">Add comment</button>
+            </div>
+        </form>
+        <div ng-repeat="comment in car.comments">
+            <p ng-bind="comment.name"></p>
+            <p ng-bind="comment.comment"></p>
+            <button type="submit" ng-click="removeComment(comment, car)" class="button button--primary">remove comment</button>
+        </div>
+    </div>
+    <a href="#{{$index+1}}" class="button-link button-link--primary section__link" du-smooth-scroll>Next</a>
+</div>
+

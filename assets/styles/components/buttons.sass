@@ -1,0 +1,43 @@
+.button
+  display: inline-block
+  font:
+    family: $fjalla
+    size: 16px
+    weight: bold
+  text-transform: uppercase
+  border: 0
+  transition: .1s background
+  line-height: 35px
+  padding: 0 25px
+  transition: all 0.5s ease
+
+  &:hover
+    text-decoration: none
+
+.button--primary
+  background: $secondary-color
+  color: $color__white
+  transform: rotate(0deg) scale(1.003) skew(-26deg) translate(0px)
+
+  &:hover
+    background: $primary-color
+    color: $color__white
+
+.button-link
+  text-decoration: none 
+  text-transform: uppercase
+  font:
+    family: $fjalla
+    size: 16px
+
+.button-link--primary
+  color: $color__white
+  font-size: 20px
+  transition: all 0.5s ease
+
+  &:hover,
+  &:focus
+    color: $color__white
+    font-size: 24px
+    text-decoration: none
+
