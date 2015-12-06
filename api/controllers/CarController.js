@@ -12,7 +12,6 @@ module.exports = {
     });
   },
   addCar: function(req, res) {
-    console.log(req.body);
     var carVal = (req.body.value) ? req.body.value : undefined
     CarService.addCar(carVal, function(success) {
        res.json(success);

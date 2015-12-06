@@ -6,7 +6,7 @@ module.exports = {
     });
   },
   addComment: function(commentVal, next) {
-    Comment.create({name: commentVal.name, comment: commentVal.comment, owner: commentVal.owner}).exec(function(err, comment) {
+    Comment.create({value: commentVal}).exec(function(err, comment) {
       if(err) throw err;
       next(comment);
     });
