@@ -9,6 +9,7 @@ var jsFilesToInject = [
   'bower_components/angular-route/angular-route.js',
   'bower_components/angular-scroll/angular-scroll.js',
   'bower_components/three.js/three.js',
+  'bower_components/angular-color-picker/angular-color-picker.js',
   'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   'bower_components/bootstrap/dist/js/boostrap.js',
   'js/dependencies/**/*.js',

@@ -1,6 +1,6 @@
 angular.module('CarCtrl', [])
 
-  .controller('CarCtrl', ['$scope', '$rootScope', 'CarService', 'CommentService', 'StyleService', function($scope, $rootScope, CarService, CommentService, StyleService) {
+  .controller('CarCtrl', ['$scope', '$rootScope', 'CarService', 'CommentService', function($scope, $rootScope, CarService, CommentService) {
     $scope.cars = [];
 
     carsFetching = function () {

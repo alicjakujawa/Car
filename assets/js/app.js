@@ -1,6 +1,6 @@
 'use strict';
 
-var carApp = angular.module('carApp', ['ngRoute', 'ui.bootstrap', 'CarCtrl', 'duScroll', 'carModel']);
+var carApp = angular.module('carApp', ['ngRoute', 'ui.bootstrap', 'CarCtrl', 'duScroll', 'carModel', 'mp.colorPicker']);
 carApp.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
