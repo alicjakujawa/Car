@@ -2,7 +2,6 @@ angular.module('CarCtrl', [])
 
   .controller('CarCtrl', ['$scope', '$rootScope', 'CarService', 'CommentService', 'StyleService', function($scope, $rootScope, CarService, CommentService, StyleService) {
     $scope.cars = [];
-    var styles = StyleService.getStyle();
 
     carsFetching = function () {
       CarService.getCars().then(function(response) {

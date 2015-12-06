@@ -1,17 +1,20 @@
 angular.module("carModel", [])
   .directive( "carModel",
-    [function () {
+    ['StyleService', function (StyleService) {
       return {
         restrict: "E",
         link: function (scope, elem, attr) {
+          var modelStyle;
+          StyleService.getStyle().then(function(response) {
+            modelStyle = response[0];
+            init();
+          });
 
           var scene, camera, renderer, car, controls, textureCube, geometry;
           var mouseX = 0, mouseY = 0, angle = 0;
           var windowHalfX = window.innerWidth / 2;
           var windowHalfY = window.innerHeight / 2;
           var left = false, right = false, up = false, down = false;
-
-          init();
 
           function init() {
               scene = new THREE.Scene();
@@ -51,18 +54,12 @@ angular.module("carModel", [])
 
               var button = document.getElementById("colorChange");
               var colors_variant = document.getElementById("colors_variant");
-              /*
-              createMenu();
-              button.addEventListener("click", function() {
 
-                car.children[5].material = interior
-              })*/
-
-              var glass = new THREE.MeshBasicMaterial( { color: 0x101046, envMap: textureCube, opacity: 0.25, transparent: true } );
-              var body = new THREE.MeshLambertMaterial( {color: 0x770000, envMap: textureCube, combine: THREE.MultiplyOperation });
-              var engine = new THREE.MeshLambertMaterial( { color: 0x222222, envMap: textureCube } );
-              var interior = new THREE.MeshPhongMaterial( { color: 0x050505, envMap: textureCube, shininess: 20 } );
-              var wells = new THREE.MeshLambertMaterial( { color: 0x050505, envMap: textureCube } );
+              var glass = new THREE.MeshBasicMaterial( { color: parseInt(modelStyle.glass), envMap: textureCube, opacity: 0.25, transparent: true } );
+              var body = new THREE.MeshLambertMaterial( {color: parseInt(modelStyle.body), envMap: textureCube, combine: THREE.MultiplyOperation });
+              var engine = new THREE.MeshLambertMaterial( { color: parseInt(modelStyle.engine), envMap: textureCube } );
+              var interior = new THREE.MeshPhongMaterial( { color: parseInt(modelStyle.interior), envMap: textureCube, shininess: 20 } );
+              var wells = new THREE.MeshLambertMaterial( { color: parseInt(modelStyle.wells), envMap: textureCube } );
               var loader = new THREE.OBJLoader();
 
               loader.load(

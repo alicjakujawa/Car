@@ -1,21 +1,15 @@
 carApp.service('StyleService', function($http, $q) {
 
-  var style; 
   getStyle().then(function(response) {
-    style = response;
-    if(!style.length) {
+    if(!response.length) {
       createStyle();
     }
-    console.log(style);
   });
 
   return {
-
     'getStyle': function() {
-      console.log(style);
-      return style;
-    },
-
+      return getStyle();
+    }
   };
 
   function createStyle() {
