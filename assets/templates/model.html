@@ -1,7 +1,7 @@
 <a href="/" class="button-link">
   <span class="glyphicon glyphicon-chevron-left button-link__icon" aria-hidden="true"></span>
 </a>
-<div id="colors_variant"></div>
-<color-picker ng-model="color"></color-picker>
-<car-model style="width: 100%;"></car-model>
+<button id="color_button">Set body color</button>
+<color-picker format="hex" ng-model="color"></color-picker>
+<car-model color="color" style="width: 100%;"></car-model>
 

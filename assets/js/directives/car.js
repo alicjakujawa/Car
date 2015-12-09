@@ -3,6 +3,9 @@ angular.module("carModel", [])
     ['StyleService', function (StyleService) {
       return {
         restrict: "E",
+        scope: {
+          color: "="
+        },
         link: function (scope, elem, attr) {
           var modelStyle;
           StyleService.getStyle().then(function(response) {
@@ -52,15 +55,24 @@ angular.module("carModel", [])
 
               addSkyBox();
 
-              var button = document.getElementById("colorChange");
-              var colors_variant = document.getElementById("colors_variant");
-
               var glass = new THREE.MeshBasicMaterial( { color: parseInt(modelStyle.glass), envMap: textureCube, opacity: 0.25, transparent: true } );
               var body = new THREE.MeshLambertMaterial( {color: parseInt(modelStyle.body), envMap: textureCube, combine: THREE.MultiplyOperation });
               var engine = new THREE.MeshLambertMaterial( { color: parseInt(modelStyle.engine), envMap: textureCube } );
               var interior = new THREE.MeshPhongMaterial( { color: parseInt(modelStyle.interior), envMap: textureCube, shininess: 20 } );
               var wells = new THREE.MeshLambertMaterial( { color: parseInt(modelStyle.wells), envMap: textureCube } );
               var loader = new THREE.OBJLoader();
+
+              var button = document.getElementById("color_button");
+              button.addEventListener("click", function() {
+                setBodyColor();
+              })
+
+              function setBodyColor() {
+                console.log(scope.color);
+                body = new THREE.MeshLambertMaterial( {color: scope.color, envMap: textureCube, combine: THREE.MultiplyOperation });
+                console.log(body);
+                animate();
+              }
 
               loader.load(
                   '/models/audir8.obj',

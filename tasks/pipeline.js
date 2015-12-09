@@ -1,5 +1,6 @@
 var cssFilesToInject = [
 'bower_components/bootstrap/dist/css/bootstrap.css',
+'bower_components/angular-color-picker/angular-color-picker.css',
 'styles/**/*.css'
 ];
 var jsFilesToInject = [
