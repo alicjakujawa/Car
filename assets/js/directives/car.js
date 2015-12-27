@@ -1,6 +1,6 @@
 angular.module("carModel", [])
   .directive( "carModel",
-    ['StyleService', function (StyleService) {
+    ['StyleService', '$http', function (StyleService, $http) {
       return {
         restrict: "E",
         scope: {
@@ -10,7 +10,7 @@ angular.module("carModel", [])
           var modelStyle;
           StyleService.getStyle().then(function(response) {
             modelStyle = response[0];
-            init();
+            init()
           });
 
           var scene, camera, renderer, car, controls, textureCube, geometry;
@@ -34,7 +34,7 @@ angular.module("carModel", [])
               camera.eulerOrder = 'ZXY';
 
               scene.add(camera);
-              
+
               var ambient = new THREE.AmbientLight( 0x050505 );
               scene.add( ambient );
 
@@ -68,10 +68,18 @@ angular.module("carModel", [])
               })
 
               function setBodyColor() {
-                console.log(scope.color);
                 body = new THREE.MeshLambertMaterial( {color: scope.color, envMap: textureCube, combine: THREE.MultiplyOperation });
-                console.log(body);
+                car.children[1].material = body;
+                car.children[3].material = body;
+                car.children[5].material = body;
+                car.children[8].material = body;
+                save(scope.color);
                 animate();
+              }
+
+              function save(body) {
+                modelStyle.body = body;
+                $http.put('/style/'+ modelStyle.id, {"body": "0x"+modelStyle.body.slice( 1 )});
               }
 
               loader.load(
